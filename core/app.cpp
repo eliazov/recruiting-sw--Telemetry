@@ -15,7 +15,11 @@ Se l'utente non è loggato mostra solo la schermata iniziale.
 Se è loggato come user normale mostra anche la scheda con il grafico dei tempi sul giro
 Se l'utente loggato è admin può accedere anche alla scheda che mostra le temperaature delle gomme
 */
-
+/*
+Al momento ho diviso tutto il 4 schermate: home, lapTime, temperature e login.
+Ho fatto così per rendere il codice più modulare nel caso si dovessero aggiungere altre schermate. Per adesso ho fatto solo queste
+perchè non sapevo bene cos'altro potevo aggiungere
+*/
     if (ImGui::BeginTabBar("TabBar")){
         if (ImGui::BeginTabItem("Home")){
                 
