@@ -26,6 +26,7 @@ add_library(
     ${CMAKE_CURRENT_SOURCE_DIR}/core/login.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/core/lapTime.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/core/tempRuote.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/core/admin.cpp
 
 
 
