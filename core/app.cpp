@@ -5,21 +5,20 @@
 #include <string>
 #include <vector>
 #include "tempRuote.h"
-
+#include "admin.h"
 utente u_current=noLog;
 char status[]="you are not able to see this tab. Try to log-in if you didn't do it before";
+bool lapTime=true;
+bool temperature=true;
 void app_render(){
 
 /*
 Se l'utente non è loggato mostra solo la schermata iniziale.
 Se è loggato come user normale mostra anche la scheda con il grafico dei tempi sul giro
-Se l'utente loggato è admin può accedere anche alla scheda che mostra le temperaature delle gomme
+Se l'utente loggato è admin può accedere anche alla scheda che mostra le temperaature delle gomme e può accedere alla schermata admin
+che permette di scegliere quali schede visualizzare
 */
-/*
-Al momento ho diviso tutto il 4 schermate: home, lapTime, temperature e login.
-Ho fatto così per rendere il codice più modulare nel caso si dovessero aggiungere altre schermate. Per adesso ho fatto solo queste
-perchè non sapevo bene cos'altro potevo aggiungere
-*/
+
     if (ImGui::BeginTabBar("TabBar")){
         if (ImGui::BeginTabItem("Home")){
                 
@@ -28,7 +27,7 @@ perchè non sapevo bene cos'altro potevo aggiungere
             ImGui::Text("Admin - Logged - No-Logged");
             ImGui::EndTabItem();
         }
-        if (ImGui::BeginTabItem("LapTime")){
+        if (lapTime && ImGui::BeginTabItem("LapTime")){
             if(u_current!=noLog){
                 LapTime();
             }
@@ -37,7 +36,7 @@ perchè non sapevo bene cos'altro potevo aggiungere
             }
             ImGui::EndTabItem();
         }
-        if (ImGui::BeginTabItem("Temperature")){
+        if (temperature && ImGui::BeginTabItem("Temperature")){
             if(u_current==admin){
                 temp_ruote();
             }
@@ -52,11 +51,16 @@ perchè non sapevo bene cos'altro potevo aggiungere
             login(u_current);
             ImGui::EndTabItem();
         }
+        if (ImGui::BeginTabItem("Admin")){
+            if(u_current==admin){
+                sl_admin(lapTime, temperature);
+            }
+            else{
+                ImGui::Text(status);
+            }
+            ImGui::EndTabItem();
+        }
         ImGui::EndTabBar();
     }
-
-    
-   
-
 
 }
